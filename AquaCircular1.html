@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaCircular - Gestión Sostenible del Agua</title>
+    <link rel="stylesheet" href="styles-general.css">
+</head>
+<body>
+    <style>
+        /* ==================== RESETEO Y FUENTES ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@300;400;600;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #a8e6ff, #e0f7fa);
+    color: #003366;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* ==================== HEADER ==================== */
+.header {
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.header__title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 4rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 3px 3px 0 #0055aa;
+}
+
+.header__subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+/* ==================== NAVEGACIÓN FIJA ==================== */
+.nav {
+    position: sticky;
+    top: 0;
+    background: #ffffff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    padding: 1rem 0;
+}
+
+.nav__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.nav__link {
+    background: #00c6ff;
+    color: white;
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+    box-shadow: 0 4px 10px rgba(0,198,255,0.4);
+}
+
+.nav__link:hover {
+    background: #0072ff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,114,255,0.6);
+}
+
+/* ==================== MAIN ==================== */
+.main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* Hero */
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    background: white;
+    padding: 3rem;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin-bottom: 4rem;
+}
+
+.hero__title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 3.5rem;
+    color: #00aaff;
+}
+
+.hero__text {
+    font-size: 1.4rem;
+    margin: 1.5rem 0;
+}
+
+.hero__meta {
+    background: #e0f7fa;
+    padding: 1rem;
+    border-radius: 15px;
+    display: inline-block;
+}
+
+.image-placeholder {
+    background: #b3e5fc;
+    border: 4px dashed #00c6ff;
+    border-radius: 20px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: #005577;
+    text-align: center;
+}
+
+/* Secciones generales */
+.section {
+    background: white;
+    padding: 3rem;
+    border-radius: 25px;
+    margin-bottom: 3rem;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.section--alt {
+    background: #e3f2fd;
+}
+
+.section__title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.8rem;
+    color: #0077be;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Autores */
+.authors__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.author-card {
+    background: #81d4fa;
+    color: white;
+    padding: 1.5rem;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Objetivo */
+.objective {
+    background: linear-gradient(135deg, #80deea, #4fc3f7);
+    color: white;
+    text-align: center;
+    padding: 3rem;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.objective__title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Estadísticas */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.stat-card {
+    background: #bbdefb;
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.stat-card__title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.8rem;
+    color: #005b96;
+    margin: 1rem 0;
+}
+
+/* Casos de estudio */
+.case-study {
+    background: #fff;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    margin-bottom: 3rem;
+}
+
+.case-study__header {
+    background: #29b6f6;
+    color: white;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.4rem;
+}
+
+.case-study__title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2rem;
+}
+
+.case-study__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.highlight-box {
+    background: #fff59d;
+    padding: 1rem;
+    border-radius: 15px;
+    margin-top: 1rem;
+    font-weight: bold;
+    border-left: 8px solid #ffb300;
+}
+
+/* Mini casos */
+.mini-case {
+    background: #e1f5fe;
+    padding: 1.5rem;
+    border-radius: 20px;
+    text-align: center;
+}
+
+/* Implicaciones México */
+.implications {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.implication-card {
+    background: #b3e5fc;
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+}
+
+/* Recomendaciones */
+.recommendations__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.recommendation-item {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.recommendation-item__number {
+    background: #00e5ff;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+/* Recursos */
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.resource-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.resource-card__button {
+    margin-top: 1rem;
+    background: #4caf50;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.resource-card__button:hover {
+    background: #388e3c;
+    transform: scale(1.1);
+}
+
+/* Referencias */
+.references {
+    background: #f5f5f5;
+    padding: 3rem;
+    border-radius: 25px;
+}
+
+.references__item {
+    margin-bottom: 1rem;
+}
+
+/* Footer */
+.footer {
+    background: #01579b;
+    color: white;
+    padding: 3rem 1rem;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.footer__title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.5rem;
+}
+
+/* Responsivo para niños en tablets y celulares */
+@media (max-width: 768px) {
+    .hero, .case-study__content {
+        grid-template-columns: 1fr;
+    }
+    
+    .header__title {
+        font-size: 3rem;
+    }
+    
+    .hero__title {
+        font-size: 2.8rem;
+    }
+    
+    .nav__container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .nav__link {
+        width: 80%;
+        text-align: center;
+    }
+
+}
+    </style>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header__container">
+            <div class="header__logo">
+                <!-- ESPACIO PARA LOGO -->
+            </div>
+            <h1 class="header__title">AquaCircular</h1>
+            <p class="header__subtitle">Modelos de Recirculación y Gestión Sostenible del Agua</p>
+        </div>
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="#inicio" class="nav__link">Inicio</a>
+            <a href="#introduccion" class="nav__link">Introducción</a>
+            <a href="#contexto" class="nav__link">Contexto Mundial</a>
+            <a href="#casos" class="nav__link">Casos de Estudio</a>
+            <a href="#mexico" class="nav__link">México</a>
+            <a href="#recursos" class="nav__link">Recursos</a>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+        
+        <!-- HERO SECTION -->
+        <section id="inicio" class="hero">
+            <div class="hero__content">
+                <h2 class="hero__title">Circularidad del Agua</h2>
+                <p class="hero__text">Un enfoque circular para optimizar el recurso hídrico mediante el tratamiento de aguas residuales, captación de lluvia e infraestructuras verdes.</p>
+                <div class="hero__meta">
+                    <p class="hero__date">9 de octubre de 2025</p>
+                    <p class="hero__institution">UPSRJ - Habilidades Gerenciales</p>
+                </div>
+            </div>
+            <div class="hero__image">
+                <!-- ESPACIO PARA IMAGEN PRINCIPAL -->
+                <div class="hero__image">
+    <!-- ESPACIO PARA IMAGEN PRINCIPAL -->
+    <img width="500px" height="auto" src="https://i0.wp.com/en15dias.com/wp-content/uploads/2022/09/6078675.jpg?fit=950%2C950&ssl=1" 
+         alt="Ciclo urbano del agua: Etapas de captación, tratamiento, consumo y reutilización" 
+         class="hero-image-full">
+</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AUTORES -->
+        <section class="authors">
+            <h3 class="authors__title">Autores</h3>
+            <div class="authors__grid">
+                <div class="author-card">Apolo Reynoso Ruiz</div>
+                <div class="author-card">Erick González Gómez</div>
+                <div class="author-card">Allan Roberto Ortiz Sánchez</div>
+                <div class="author-card">Jonathan Uriel Morales Badillo</div>
+            </div>
+        </section>
+
+        <!-- OBJETIVO -->
+        <section class="objective">
+            <h2 class="objective__title">Objetivo General</h2>
+            <p class="objective__text">Analizar la transición hacia modelos de recirculación de agua como enfoque circular para optimizar el recurso hídrico, mediante el tratamiento de aguas residuales, captación de lluvia e infraestructuras verdes.</p>
+        </section>
+
+        <!-- INTRODUCCIÓN -->
+        <section id="introduccion" class="section">
+            <h2 class="section__title">Introducción</h2>
+            <div class="section__layout">
+                <div class="section__content">
+                    <p class="section__text">Los modelos de recirculación de agua representan un cambio fundamental en la gestión hídrica, pasando de un paradigma lineal de "usar y desechar" a un enfoque circular que optimiza el uso de este recurso vital.</p>
+                    <p class="section__text">La relevancia de estas prácticas se acentúa en un contexto de creciente escasez hídrica, presión demográfica y los impactos adversos del cambio climático, factores que demandan soluciones innovadoras para garantizar la disponibilidad de agua dulce para las generaciones futuras.</p>
+                </div>
+                <div class="section__media">
+                    <div class="image-placeholder"> 
+                        <img width="850" height="auto"  src="https://www.bluegold.es/wp-content/uploads/2020/11/economia-circular-Blue-Gold.jpg">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTEXTO MUNDIAL -->
+        <section id="contexto" class="section section--alt">
+            <h2 class="section__title">Contexto Mundial de la Circulación Hídrica</h2>
+            <div class="section__content">
+                <p class="section__text">A nivel mundial, la disponibilidad de agua dulce es un desafío creciente. Las fuentes naturales de agua están sometidas a una presión sin precedentes debido al aumento de la demanda agrícola, industrial y doméstica.</p>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="image-placeholder image-placeholder--small">
+                            <img style="border-radius: 25px;" height="380px" width="250" src="https://arzatenoticias.com/wp-content/uploads/2021/06/agua.jpg">
+                        </div>
+                        <h3 class="stat-card__title">Demanda Creciente</h3>
+                        <p class="stat-card__text">Presión sin precedentes en ríos, lagos y acuíferos</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="image-placeholder image-placeholder--small">
+                            <img style="border-radius: 25px;" height="380px" width="250" src="https://us.123rf.com/450wm/blueringmedia/blueringmedia1912/blueringmedia191202408/136470454-contaminaci%C3%B3n-del-agua-con-bolsas-de-pl%C3%A1stico-en-la-ilustraci%C3%B3n-del-r%C3%ADo.jpg?ver=6">
+                        </div>
+                        <h3 class="stat-card__title">Calidad Comprometida</h3>
+                        <p class="stat-card__text">Contaminación afecta fuentes de agua dulce</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="image-placeholder image-placeholder--small">
+                            <img style="border-radius: 25px;" height="380px" width="250" src="https://us.123rf.com/450wm/denyshutter/denyshutter2302/denyshutter230201024/198528131-water-quality-research-and-analysis-vector-illustration-cartoon-tiny-people-researching-droplets.jpg">                        </div>
+                        <h3 class="stat-card__title">Oportunidades</h3>
+                        <p class="stat-card__text">Tecnologías avanzadas y políticas de eficiencia</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CASOS DE ESTUDIO -->
+        <section id="casos" class="section">
+            <h2 class="section__title">Casos de Estudio Internacionales</h2>
+            
+            <!-- CASO CHINA -->
+            <article class="case-study">
+                <div class="case-study__header">
+                    <div class="case-study__flag">
+                        <!-- ESPACIO PARA BANDERA/ICONO -->
+                    </div>
+                    <div>
+                        <h3 class="case-study__title">China: Prioridad en la Reutilización del Agua</h3>
+                        <p class="case-study__subtitle">Estrategia "Beautiful China"</p>
+                    </div>
+                </div>
+                <div class="case-study__content">
+                    <div class="case-study__text">
+                        <p>China ha adoptado un enfoque ambicioso hacia la recirculación del agua bajo la estrategia "Beautiful China: Prioridad en la reutilización del agua". Este enfoque busca no solo mejorar la calidad del agua, sino también cerrar el ciclo del uso hídrico.</p>
+                        <h4 class="case-study__heading">Acciones Clave:</h4>
+                        <ul class="case-study__list">
+                            <li><strong>Tratamiento y reutilización:</strong> Aguas tratadas para riego agrícola, limpieza urbana y procesos industriales.</li>
+                            <li><strong>Infraestructura verde:</strong> Humedales artificiales y sistemas de drenaje sostenible.</li>
+                            <li><strong>Normativas ecológicas:</strong> Regulaciones que incentivan la economía circular del agua.</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <strong>Indicador clave:</strong> Reducción del 34.4% en emisiones de CO₂ por unidad de PIB.
+                        </div>
+                    </div>
+                    <div class="case-study__media">
+                        <div class="image-placeholder">
+                           <img width="350" height="auto" style="border-radius: 25px" src="https://www.defensa.gob.es/documents/2073105/2145542/China+y+el+agua_+entre+la+fortaleza+y+la+debilidad_DIEEEA59_2024_MARHID_China.jpg/ec5e5644-613d-d8ba-6e9f-7df10bff22e1?t=1727872676878">
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- CASO PANAMÁ -->
+            <article class="case-study">
+                <div class="case-study__header">
+                    <div class="case-study__flag">
+                        <!-- ESPACIO PARA BANDERA/ICONO -->
+                    </div>
+                    <div>
+                        <h3 class="case-study__title">Panamá: Circularidad y Huella Hídrica</h3>
+                        <p class="case-study__subtitle">Modelo de Gestión Sostenible</p>
+                    </div>
+                </div>
+                <div class="case-study__content">
+                    <div class="case-study__text">
+                        <p>El modelo panameño se basa en el paradigma de la Circularidad del Agua, con el objetivo de transformar el sistema de consumo lineal hacia uno circular. El núcleo de este modelo es la aplicación del indicador de la Huella Hídrica.</p>
+                        <h4 class="case-study__heading">Dos Acciones Clave:</h4>
+                        <ul class="case-study__list">
+                            <li><strong>Recuperación del Agua Verde:</strong> Aprovechamiento del agua de lluvia almacenada en el suelo.</li>
+                            <li><strong>Reutilización del Agua Gris:</strong> Tratamiento y uso de aguas residuales domésticas para fines no potables.</li>
+                        </ul>
+                        <div class="highlight-box">
+                            <strong>Relevancia:</strong> Protección del embalse del Lago Alajuela, crucial para el Canal de Panamá.
+                        </div>
+                    </div>
+                    <div class="case-study__media">
+                        <div class="image-placeholder">
+                            <img width="350" height="auto" style="border-radius: 25px" src="https://media.ecotvpanama.com/p/da8ae3139e695d66235d6bc6a280c5c6/adjuntos/323/imagenes/014/912/0014912730/canal_de_panama_diciembre_de_2019jpg.jpg">
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- OTROS CASOS -->
+            <div class="additional-cases">
+                <h3 class="additional-cases__title">Otros Casos Relevantes</h3>
+                <div class="additional-cases__grid">
+                    <div class="mini-case">
+                        <div class="image-placeholder image-placeholder--small">
+                           <img width="1000" height="380" style="border-radius: 25px" src="https://www.pub.gov.sg/-/media/PUB/Hero/NEWater.webp?iar=0&hash=86322210694006C5FA9BA8CCB59CA586">
+                        </div>
+                        <h4 class="mini-case__title">Singapur - NEWater</h4>
+                        <p class="mini-case__text">Agua residual tratada que satisface el 40% de las necesidades del país.</p>
+                    </div>
+                    <div class="mini-case">
+                        <div class="image-placeholder image-placeholder--small">
+                           <img width="1000" height="380" style="border-radius: 25px" src="https://israelnoticias.com/wp-content/uploads/2025/05/image-2025-05-18T113109.522.webpS">
+                        </div>
+                        <h4 class="mini-case__title">Israel - Liderazgo</h4>
+                        <p class="mini-case__text">Recicla aproximadamente el 90% de sus aguas residuales para riego agrícola.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MÉXICO -->
+        <section id="mexico" class="section section--alt">
+            <h2 class="section__title">Relevancia para México</h2>
+            <div class="section__content">
+                <p class="section__text">México enfrenta significativos retos hídricos: sobreexplotación de acuíferos, contaminación y distribución desigual del recurso. La adopción de modelos de circularidad hídrica es una necesidad urgente.</p>
+                
+                <div class="implications">
+                    <div class="implication-card">
+                        <h3 class="implication-card__title">Implicaciones Políticas</h3>
+                        <div class="image-placeholder image-placeholder--small">
+                         <img style="border-radius: 25px;" height="380px" width="250" src="https://gacetacomunidad.cuautitlan.unam.mx/wp-content/uploads/2024/06/3-2.jpg">
+
+                        </div>
+                        <p class="implication-card__text">Requiere un marco legal y normativo que incentive la reutilización del agua y facilite la inversión pública y privada.</p>
+                    </div>
+                    <div class="implication-card">
+                        <h3 class="implication-card__title">Implicaciones Técnicas</h3>
+                        <div class="image-placeholder image-placeholder--small">
+                        <img style="border-radius: 25px;" height="380px" width="250" src="https://thumbs.dreamstime.com/z/imagen-de-tecnolog%C3%ADa-conservaci%C3%B3n-del-agua-un-dispositivo-o-ahorro-esta-representa-como-controlador-riego-inteligente-sistema-277341651.jpg">
+
+                        </div>
+                        <p class="implication-card__text">Necesidad de tecnologías de tratamiento avanzadas y capacitación de personal técnico especializado.</p>
+                    </div>
+                    <div class="implication-card">
+                        <h3 class="implication-card__title">Implicaciones Socioeconómicas</h3>
+                        <div class="image-placeholder image-placeholder--small">
+                              <img style="border-radius: 25px;" height="380px" width="250" src="https://www.eldiario.net/portal/wp-content/uploads/2024/06/Socio-La-sociedad.jpg">
+
+                        </div>
+                        <p class="implication-card__text">Beneficios económicos al reducir costos, pero requiere superar barreras de percepción pública.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONCLUSIONES -->
+        <section class="section">
+            <h2 class="section__title">Conclusiones y Recomendaciones</h2>
+            <div class="section__content">
+                <p class="section__text">Los modelos de circularidad hídrica representan una estrategia esencial para la gestión sostenible del agua a nivel global. Los casos de China, Panamá, Singapur e Israel demuestran la viabilidad y los beneficios de enfoques integrales.</p>
+                
+                <div class="recommendations">
+                    <h3 class="recommendations__title">Recomendaciones para México</h3>
+                    <div class="recommendations__grid">
+                        <div class="recommendation-item">
+                            <span class="recommendation-item__number">1</span>
+                            <p class="recommendation-item__text">Fortalecer el marco normativo con leyes que promuevan la circularidad del agua</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <span class="recommendation-item__number">2</span>
+                            <p class="recommendation-item__text">Priorizar inversión en plantas de tratamiento y sistemas de distribución</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <span class="recommendation-item__number">3</span>
+                            <p class="recommendation-item__text">Integrar la evaluación de Huella Hídrica en la planificación nacional</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <span class="recommendation-item__number">4</span>
+                            <p class="recommendation-item__text">Desarrollar campañas de educación y sensibilización pública</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <span class="recommendation-item__number">5</span>
+                            <p class="recommendation-item__text">Fomentar investigación en tecnologías de tratamiento innovadoras</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <span class="recommendation-item__number">6</span>
+                            <p class="recommendation-item__text">Mejorar coordinación entre niveles de gobierno y sectores</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RECURSOS -->
+        <section id="recursos" class="section section--resources">
+            <h2 class="section__title">Recursos y Material Adicional</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <img width="800px" height="auto" src="https://drive.google.com/thumbnail?id=1ywdvY1Da2YDbz-GUSH9aaVXfCcVYUGSN&sz=w1000">
+                 
+                </div>
+            </div>
+        </section>
+
+        <!-- REFERENCIAS -->
+        <section class="references">
+            <h2 class="references__title">Referencias</h2>
+            <ul class="references__list">
+                <li class="references__item">Banco Mundial. (2022). Agua: El recurso vital para un futuro sostenible. <a href="https://www.bancomundial.org/es/topic/water/overview" target="_blank">https://www.bancomundial.org/es/topic/water/overview</a></li>
+                <li class="references__item">CESEDEN. (2023). China y el agua: entre la fortaleza y la debilidad. <a href="https://www.defensa.gob.es/ceseden/-/china-y-el-agua-entre-la-fortaleza-y-la-debilidad-1" target="_blank">https://www.defensa.gob.es/ceseden/-/china-y-el-agua-entre-la-fortaleza-y-la-debilidad-1</a></li>
+                <li class="references__item">CONAGUA. (2020). Estadísticas del agua en México, edición 2020. Comisión Nacional del Agua.</li>
+                <li class="references__item">Díaz, T. (2020). La huella hídrica indicador para aplicar la circularidad del agua: Modelo de gestión sostenible para Panamá. Cátedra, (17), 66-78.</li>
+                <li class="references__item">Klohn, W., Alon, H., & Shoval, A. (2019). Water Management in Israel: Case Study on Sustainable Water Solutions. World Bank Group.</li>
+                <li class="references__item">Martínez, A. (2017). El agua y los retos del siglo XXI. Aquae Papers, 7, 1-92. Fundación Aquae.</li>
+                <li class="references__item">PUB Singapore. (2023). NEWater. <a href="https://www.pub.gov.sg/waterresources/newater" target="_blank">https://www.pub.gov.sg/waterresources/newater</a></li>
+                <li class="references__item">SACMEX. (2018). Programa de Recuperación Hídrica y Manejo de Aguas Pluviales de la Ciudad de México. Sistema de Aguas de la Ciudad de México.</li>
+                <li class="references__item">Seguí Amórtegui, L. A., García Vega, D. y Guerrero García Rojas, H. R. (2016). Huella hídrica: análisis como instrumento estratégico de gestión para el aprovechamiento eficiente de los recursos hídricos. Ciencia Nicolaita: Revista Científica de la Universidad Michoacana de San Nicolás de Hidalgo, (69), 76-101.</li>
+                <li class="references__item">UNESCO. (2023). Informe Mundial sobre el Desarrollo de los Recursos Hídricos de las Naciones Unidas 2023: Alianzas y cooperación para el agua. UNESCO.</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer__container">
+            <div class="footer__info">
+                <h3 class="footer__title">AquaCircular</h3>
+                <p class="footer__text">Trabajo académico sobre modelos de recirculación hídrica</p>
+                <p class="footer__institution">UPSRJ - Habilidades Gerenciales</p>
+            </div>
+            <div class="footer__contact">
+                <h4 class="footer__subtitle">Contacto</h4>
+                <p class="footer__text">Universidad Politécnica de Santa Rosa Jáuregui</p>
+                <p class="footer__text">2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="script.js"></script>
+</body>
+</html>
